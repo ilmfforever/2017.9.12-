@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let arr=new myArray(1,2,4,3,5);
+ //输出一个数组
+ console.log(arr);
+ //在一个数组后添加元素
+ // console.log(arr.push(5,6,7));
+ //在数组中查找一个元素，有的话返回他第一次出现的的位置，没有返回-1
+ console.log(arr.indexOf(1));
+ //在数组中查找一种数据类型，有返回true，没有返回false
+ console.log(arr.some(function (value){
+ 	if(typeof value=="boolean") {
+ 		return true;
+ 	}
+ 	else
+ 		return false;
+ }))
+ //将一个数组倒序排列
+ console.log(arr.reverse());
+ //在数组中查找一个元素，有的话返回他最后第一次出现的的位置，没有返回-1   lastindexof
+ console.log(arr.lastindexOf(1));
+ //将数组的数据转换成字符串进行拼接  join
+ console.log(arr.join("--"));
+ //判断数组是否存在某一个值  includes
+ console.log(arr.includes(3));
+ //把数组中的元素进行排序 (此处举例为升序) sort
+ console.log(arr.sort());
+ //看数组中的元素是否都满足同一个条件，都满足返回true，否则返回false (此处举例为每个数是否都大于0)    every
+ console.log(arr.every(function(value){
+ 	return value>0;
+ }));
+ //让一个数组里的素有元素都进行一种运算，然后输出新的数组 (此处举例为每个数减一) map
+ console.log(arr.map(function(value){
+ 	return value-1;
+ }));
+ //筛选数组符合条件里的元素 (此处举例为筛选偶数)filter
+  console.log(arr.filter());
+ function myArray(){
+ 	for(let i=0;i<arguments.length;i++){
+ 		this[i]=arguments[i];
+ 	}
+ 	this.length=arguments.length;
+
+
+ 	this.push=function(value){
+ 	for(let i=0;i<arguments.length;i++){
+ 		this[this.length]=arguments[i];
+ 		this.length++;
+ 	}
+ 	return this;
+ 	}
+
+ 	this.indexOf=function(value){
+   	for(let i=0;i<this.length;i++){
+   		if(this[i]==value){
+   			return i;
+   		}
+   	}
+   	return -1; 
+   }
+
+     this.some=function(fn){
+    	for(let i=0;i<this.length;i++){
+    		if(fn(this[i])){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+
+    this.reverse=function(value){
+    	var arr1=[];
+    	for(let i=this.length-1;i>=0;i--){
+    		arr1[arr1.length]=this[i];
+    	}
+    	return arr1;
+    }
+
+    this.lastindexOf=function(value){
+   	for(let i=0;i<this.length;i++){
+   		if(this[i]==value){
+   			return this.length+1-i;
+   		}
+   	}
+   	return -1; 
+   }
+
+
+   this.join=function(value){
+   	var arr1="";
+   	for(let i=0;i<this.length;i++){
+   		if(!(i==this.length-1)){
+   		arr1+=this[i]+value;
+   		}
+   		else
+   			arr1+=this[i]
+   	}
+   	return arr1;
+   }
+
+   this.sort=function(){
+   	var temple=0;
+   	for(let i=0;i<this.length;i++){
+   		for(let j=0;j<this.length;j++){
+   		if(this[i]<this[j]){ 
+   			temp=this[i];
+   			this[i]=this[j];
+   			this[j]=temp;
+   		}	
+   	}
+   	var arr1=[];
+   	for(let i=0;i<this.length;i++){
+   		arr1[i]=this[i];
+   	}
+   	}
+   	return arr1;
+   }
+
+   this.includes=function(value){
+   	for(let i=0;i<this.length;i++){
+   		if(this[i]==value){
+   			return true;
+   		}
+   	} 
+   		return false;
+   }
+
+   this.every=function(fn){
+   	for(let i=0;i<this.length;i++){
+   		if(!(fn(this[i]))){
+   			return false;
+   		}
+   	}
+   	  return true;
+   }
+
+
+   this.map=function(fn){
+   	var arr1=[];
+   	for(let i=0;i<this.length;i++){
+     arr1[i]=fn(this[i]);
+
+   	}
+   	return arr1;
+   }
+
+   this.filter=function(){
+   	var arr1=[];
+   	for(let i=0;i<this.length;i++){
+   		if(this[i]%2==0){
+   			arr1[arr1.length]=this[i];
+   		}
+   	}
+   	return arr1;
+   }
+
+
+}
+
+
+	</script>
+</body>
+</html>
